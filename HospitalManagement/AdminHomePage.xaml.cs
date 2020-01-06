@@ -54,6 +54,7 @@ namespace HospitalManagement
             HospitalDB db = new HospitalDB();
             List<Subjects> subjectList = db.Subjects.ToList();
             grid_subjects.ItemsSource = subjectList;
+            fillSubjectCombobox();
         }
 
         private void LoadAppointments()
@@ -121,6 +122,162 @@ namespace HospitalManagement
                 datePicker_doctor_birthDate.SelectedDate = doctor.BirthDate;
                 textbox_doctor_username.Text = doctor.username;
                 textbox_doctor_password.Text = doctor.password;
+            }
+        }
+
+        private void btn_doctor_delete_Click(object sender, RoutedEventArgs e)
+        {
+            Doctors doctor = grid_doctors.SelectedItem as Doctors;
+            if (doctor != null)
+            {
+                HospitalDB db = new HospitalDB();
+                db.Doctors.Remove(doctor);
+                db.SaveChanges();
+                MessageBox.Show("Doctor is deleted!!");
+                LoadDoctors();
+
+            }
+            else
+            {
+                MessageBox.Show("to delete. You should select a doctor");
+            }
+        }
+
+        private void btn_subject_insert_click(object sender, RoutedEventArgs e)
+        {
+            Subjects subject = new Subjects();
+            subject.Name = textbox_subjectName.Text;
+
+            HospitalDB db = new HospitalDB();
+            db.Subjects.Add(subject);
+
+            db.SaveChanges();
+            MessageBox.Show("Subject is saved...");
+            textbox_subjectName.Text = "";
+            LoadSubjects();
+        }
+
+        private void btn_subject_update_click(object sender, RoutedEventArgs e)
+        {
+            Subjects subject = grid_subjects.SelectedItem as Subjects;
+            if (subject != null)
+            {
+                HospitalDB db = new HospitalDB();
+                var subjectnew = db.Subjects.Find(subject.Id);
+                subjectnew.Name = textbox_subjectName.Text;
+                db.SaveChanges();
+                LoadSubjects();
+                MessageBox.Show("Updated.");
+            }
+            else
+            {
+                MessageBox.Show("to update. You should select a doctor.");
+            }
+        }
+
+        private void btn_subject_delete_Click(object sender, RoutedEventArgs e)
+        {
+            Subjects subject = grid_subjects.SelectedItem as Subjects;
+            if (subject != null)
+            {
+                HospitalDB db = new HospitalDB();
+                db.Subjects.Remove(subject);
+                db.SaveChanges();
+                MessageBox.Show("subject is deleted!!");
+                LoadSubjects();
+
+            }
+            else
+            {
+                MessageBox.Show("to delete. You should select a subject");
+            }
+        }
+
+        private void btn_appointment_insert_click(object sender, RoutedEventArgs e)
+        {
+            Appointments appointment = new Appointments();
+            appointment.AppointmentHour = Int32.Parse(textbox_appointmentHour.Text);
+            appointment.AppointmentSubjectId = Int32.Parse(textbox_appointmentSubjectId.Text);
+            appointment.AppointmentDate = datePicker_appointmentDate.SelectedDate.Value;
+            appointment.DoctorId = Int32.Parse(textbox_appointmentDoctorID.Text);
+            appointment.PatientId = Int32.Parse(textbox_appointmentPatientID.Text);
+            appointment.DoctorNotes = textbox_appointmentDoctorNotes.Text;
+
+            HospitalDB db = new HospitalDB();
+            db.Appointments.Add(appointment);
+
+            db.SaveChanges();
+            MessageBox.Show("Appointment is saved...");
+            textbox_appointmentHour.Text = "";
+            textbox_appointmentSubjectId.Text = "";
+            textbox_appointmentDoctorID.Text = "";
+            textbox_appointmentPatientID.Text = "";
+            textbox_appointmentDoctorNotes.Text = "";
+            datePicker_appointmentDate.SelectedDate = DateTime.Now;
+            LoadAppointments();
+        }
+
+        private void btn_appointment_update_click(object sender, RoutedEventArgs e)
+        {
+            Appointments appointment = grid_appointments.SelectedItem as Appointments;
+            if (appointment != null)
+            {
+                HospitalDB db = new HospitalDB();
+                var appointmentnew = db.Appointments.Find(appointment.Id);
+                appointmentnew.AppointmentHour = Int32.Parse(textbox_appointmentHour.Text);
+                appointmentnew.AppointmentSubjectId = Int32.Parse(textbox_appointmentSubjectId.Text);
+                appointmentnew.AppointmentDate = datePicker_appointmentDate.SelectedDate.Value;
+                appointmentnew.DoctorId = Int32.Parse(textbox_appointmentDoctorID.Text);
+                appointmentnew.PatientId = Int32.Parse(textbox_appointmentPatientID.Text);
+                appointmentnew.DoctorNotes = textbox_appointmentDoctorNotes.Text;
+                db.SaveChanges();
+                LoadAppointments();
+                MessageBox.Show("Updated.");
+            }
+            else
+            {
+                MessageBox.Show("to update. You should select a doctor.");
+            }
+        }
+
+        private void btn_appointment_delete_Click(object sender, RoutedEventArgs e)
+        {
+            Appointments appointment = grid_appointments.SelectedItem as Appointments;
+            if (appointment != null)
+            {
+                HospitalDB db = new HospitalDB();
+                db.Appointments.Remove(appointment);
+                db.SaveChanges();
+                MessageBox.Show("appointment is deleted!!");
+                LoadAppointments();
+
+            }
+            else
+            {
+                MessageBox.Show("to delete. You should select a appointment");
+            }
+        }
+
+        private void grid_appointments_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            Appointments appointment = grid_appointments.SelectedItem as Appointments;
+            if (appointment != null)
+            {
+                textbox_appointmentDoctorID.Text = appointment.DoctorId.ToString();
+                textbox_appointmentPatientID.Text = appointment.PatientId.ToString();
+                datePicker_appointmentDate.SelectedDate = appointment.AppointmentDate;
+                textbox_appointmentHour.Text = appointment.AppointmentHour.ToString();
+                textbox_appointmentSubjectId.Text = appointment.AppointmentSubjectId.ToString();
+                textbox_appointmentDoctorNotes.Text = appointment.DoctorNotes;
+            }
+        }
+
+        private void grid_subjects_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            Subjects subject = grid_subjects.SelectedItem as Subjects;
+            if (subject != null)
+            {
+                textbox_subjectName.Text = subject.Name;
             }
         }
     }

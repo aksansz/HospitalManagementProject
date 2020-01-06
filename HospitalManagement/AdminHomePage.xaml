@@ -8,8 +8,8 @@
         Title="AdminHomePage" Height="664" Width="1039" Loaded="form_admin_homepage_Loaded">
     <Grid x:Name="grid_admin_homepage">
         <DataGrid x:Name="grid_doctors" Margin="12,33,580,233" SelectedCellsChanged="grid_doctors_SelectedCellsChanged"/>
-        <DataGrid x:Name="grid_appointments" Margin="464,33,146,233"/>
-        <DataGrid x:Name="grid_subjects" Margin="898,33,10,233"/>
+        <DataGrid x:Name="grid_appointments" Margin="464,33,200,233" SelectedCellsChanged="grid_appointments_SelectedCellsChanged"/>
+        <DataGrid x:Name="grid_subjects" Margin="851,33,10,233" SelectedCellsChanged="grid_subjects_SelectedCellsChanged"/>
         <Label x:Name="label_doctors" Content="Doctors" HorizontalAlignment="Left" Margin="196,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_appointments" Content="Appointments" HorizontalAlignment="Left" Margin="596,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_subjects" Content="Subjects" HorizontalAlignment="Left" Margin="905,10,0,0" VerticalAlignment="Top"/>
@@ -19,7 +19,7 @@
         <TextBox x:Name="textbox_doctorName" HorizontalAlignment="Left" Margin="175,429,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btn_doctor_insert" Content="Insert" HorizontalAlignment="Left" Margin="56,600,0,0" VerticalAlignment="Top" Click="btn_doctor_insert_click"/>
         <Button x:Name="btn_doctor_update" Content="Update" HorizontalAlignment="Left" Margin="179,600,0,0" VerticalAlignment="Top" Click="btn_doctor_update_click"/>
-        <Button x:Name="btn_doctor_delete" Content="Delete" HorizontalAlignment="Left" Margin="305,600,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_doctor_delete" Content="Delete" HorizontalAlignment="Left" Margin="305,600,0,0" VerticalAlignment="Top" Click="btn_doctor_delete_Click"/>
         <ComboBox x:Name="combobox_doctorSubject" HorizontalAlignment="Left" Margin="176,474,0,0" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="datePicker_doctor_birthDate" HorizontalAlignment="Left" Margin="175,501,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_doctorName" Content="Name" HorizontalAlignment="Left" Margin="31,425,0,0" VerticalAlignment="Top"/>
@@ -28,6 +28,26 @@
         <Label x:Name="label_doctor_birthDate" Content="Birth Date" HorizontalAlignment="Left" Margin="31,503,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_doctor_username" Content="Username" HorizontalAlignment="Left" Margin="31,529,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_doctor_password" Content="Password" HorizontalAlignment="Left" Margin="31,552,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textbox_subjectName" HorizontalAlignment="Left" Margin="894,436,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_subjectName" Content="Name" HorizontalAlignment="Left" Margin="851,430,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_subject_insert" Content="Insert" HorizontalAlignment="Left" Margin="860,493,0,0" VerticalAlignment="Top" Click="btn_subject_insert_click"/>
+        <Button x:Name="btn_subject_update" Content="Update" HorizontalAlignment="Left" Margin="915,493,0,0" VerticalAlignment="Top" Click="btn_subject_update_click"/>
+        <Button x:Name="btn_subject_delete" Content="Delete" HorizontalAlignment="Left" Margin="976,493,0,0" VerticalAlignment="Top" Click="btn_subject_delete_Click"/>
+        <Label x:Name="label_appointmentHour" Content="Appointment Hour" HorizontalAlignment="Left" Margin="478,449,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textbox_appointmentHour" HorizontalAlignment="Left" Margin="616,455,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="datePicker_appointmentDate" HorizontalAlignment="Left" Margin="616,423,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_appointmentDate" Content="Appointment Date" HorizontalAlignment="Left" Margin="478,423,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_appointmentSubjectId" Content="Appointment Subject ID" HorizontalAlignment="Left" Margin="478,478,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textbox_appointmentSubjectId" HorizontalAlignment="Left" Margin="616,483,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_appointment_DoctorId" Content="Doctor ID" HorizontalAlignment="Left" Margin="478,507,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textbox_appointmentDoctorID" HorizontalAlignment="Left" Margin="616,511,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_appointment_PatientID" Content="Patient ID" HorizontalAlignment="Left" Margin="478,533,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textbox_appointmentPatientID" HorizontalAlignment="Left" Margin="616,539,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_appointment_DoctorNotes" Content="Doctor Notes" HorizontalAlignment="Left" Margin="478,569,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textbox_appointmentDoctorNotes" HorizontalAlignment="Left" Margin="616,562,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="33"/>
+        <Button x:Name="btn_appointment_insert" Content="Insert" HorizontalAlignment="Left" Margin="492,603,0,0" VerticalAlignment="Top" Click="btn_appointment_insert_click"/>
+        <Button x:Name="btn_appointment_update" Content="Update" HorizontalAlignment="Left" Margin="588,601,0,0" VerticalAlignment="Top" Click="btn_appointment_update_click"/>
+        <Button x:Name="btn_appointment_delete" Content="Delete" HorizontalAlignment="Left" Margin="684,600,0,0" VerticalAlignment="Top" Click="btn_appointment_delete_Click"/>
 
     </Grid>
 </Window>
