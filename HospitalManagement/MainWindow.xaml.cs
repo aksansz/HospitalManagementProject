@@ -32,7 +32,8 @@ namespace HospitalManagement
 
         private void label_lookat_doctors_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Clicked");
+            DoctorListPage doctorListPage = new DoctorListPage();
+            doctorListPage.Show();
         }
 
         private void btn_doctor_login_Click(object sender, RoutedEventArgs e)
