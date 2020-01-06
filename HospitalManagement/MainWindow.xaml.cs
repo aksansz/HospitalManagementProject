@@ -63,6 +63,33 @@ namespace HospitalManagement
             textbox_username.Visibility = Visibility.Hidden;
             textbox_password.Visibility = Visibility.Hidden;
             btn_doctor_login_bottom.Visibility = Visibility.Hidden;
+
+            HospitalDB db = new HospitalDB();
+            List<Doctors> doctorList = db.Doctors.ToList();
+            int usernameCount = 0;
+            foreach (Doctors doctor in doctorList)
+            {
+                if(doctor.username == textbox_username.Text)
+                {
+                    if(doctor.password == textbox_password.Text)
+                    {
+                        DoctorHomePage doctorPage = new DoctorHomePage(doctor);
+                        doctorPage.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Password is wrong. Try again.");
+                    }
+                    usernameCount++;
+                    break;
+                }
+            }
+            if(usernameCount == 0)
+            {
+                MessageBox.Show("User cannot be found. Try again.");
+            }
+            textbox_username.Text = "";
+            textbox_password.Text = "";
         }
 
         private void btn_admin_login_bottom_Click(object sender, RoutedEventArgs e)
