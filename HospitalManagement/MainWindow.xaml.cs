@@ -27,7 +27,8 @@ namespace HospitalManagement
 
         private void label_appointment_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Clicked");
+            AppointmentPage appoPage = new AppointmentPage();
+            appoPage.Show();
         }
 
         private void label_lookat_doctors_MouseDown(object sender, MouseButtonEventArgs e)
